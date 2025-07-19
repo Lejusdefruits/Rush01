@@ -45,10 +45,10 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 - [x] utils.c
 - [x] makefile
 
-## Contributors:
->[Marc Chevalier](https://profile-v3.intra.42.fr/users/marcheva) | 
->[Guillaume Fouquier](https://profile-v3.intra.42.fr/users/guifouqu) | 
->[Julien Brousse](https://profile-v3.intra.42.fr/users/jubrouss)
+---
+
+| [Marc Chevalier](https://profile-v3.intra.42.fr/users/marcheva) | [Guillaume Fouquier](https://profile-v3.intra.42.fr/users/guifouqu) | [Julien Brousse](https://profile-v3.intra.42.fr/users/jubrouss) |
+| :-------------------------------------------------------------: | :-------------------------------------------------------------: | :-----------------------------------------------------------------: |
 
 ---
 
