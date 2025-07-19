@@ -26,9 +26,8 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 
 ---
 
-| ![](https://profile.intra.42.fr/users/jubrouss/photo) | ![](https://profile.intra.42.fr/users/marcheva/photo) | ![](https://profile.intra.42.fr/users/guifouqu/photo) |
-|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
-| [julien](https://profile-v3.intra.42.fr/users/jubrouss) | [marc](https://profile-v3.intra.42.fr/users/mchevali) | [guillaume](https://profile-v3.intra.42.fr/users/gfouquie) |
+contributeurs :  
+[jubrouss](https://profile-v3.intra.42.fr/users/jubrouss), [marcheva](https://profile-v3.intra.42.fr/users/marcheva), [guifouqu](https://profile-v3.intra.42.fr/users/guifouqu)
 
 ---
 
