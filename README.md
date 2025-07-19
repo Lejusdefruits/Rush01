@@ -1,24 +1,3 @@
-
-[![made at 42](https://img.shields.io/badge/made%20at-42-blue?logo=42)](https://42.fr)
-[![norminette passed](https://img.shields.io/badge/norminette-passed-brightgreen)](https://github.com/Lejusdefruits/Rush01)
-[![stars](https://img.shields.io/github/stars/Lejusdefruits/Rush01?style=social)](https://github.com/Lejusdefruits/Rush01/stargazers)
-[![forks](https://img.shields.io/github/forks/Lejusdefruits/Rush01?style=social)](https://github.com/Lejusdefruits/Rush01/network/members)
-
----
-
-## Table des matières
-
-- [présentation](#présentation)
-- [fichiers attendus](#fichiers-attendus)
-- [progress](#project-progress)
-- [compilation](#compilation)
-- [utilisation](#utilisation)
-- [exemple de sortie](#exemple-de-sortie)
-- [features cool du repo](#features-cool-du-repo)
-- [contributors](#contributors)
-
----
-
 ## Présentation
 
 ce projet est le deuxième rush de la piscine c à 42  
@@ -47,8 +26,9 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 
 ---
 
-| [Marc Chevalier](https://profile-v3.intra.42.fr/users/marcheva) | [Guillaume Fouquier](https://profile-v3.intra.42.fr/users/guifouqu) | [Julien Brousse](https://profile-v3.intra.42.fr/users/jubrouss) |
-| :-------------------------------------------------------------: | :-------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| ![](https://profile.intra.42.fr/users/jubrouss/photo) | ![](https://profile.intra.42.fr/users/marcheva/photo) | ![](https://profile.intra.42.fr/users/guifouqu/photo) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------:|
+| [julien](https://profile-v3.intra.42.fr/users/jubrouss) | [marc](https://profile-v3.intra.42.fr/users/mchevali) | [guillaume](https://profile-v3.intra.42.fr/users/gfouquie) |
 
 ---
 
