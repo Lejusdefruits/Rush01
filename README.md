@@ -26,8 +26,11 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 
 ---
 
-contributeurs :  
-[jubrouss](https://profile-v3.intra.42.fr/users/jubrouss), [marcheva](https://profile-v3.intra.42.fr/users/marcheva), [guifouqu](https://profile-v3.intra.42.fr/users/guifouqu)
+## contributors
+
+- [marc chevalier](https://profile-v3.intra.42.fr/users/marcheva) |
+- [julien brousse](https://profile-v3.intra.42.fr/users/jubrouss) |
+- [guillaume fouquier](https://profile-v3.intra.42.fr/users/guifouqu)
 
 ---
 
