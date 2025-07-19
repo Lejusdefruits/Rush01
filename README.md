@@ -6,7 +6,7 @@
 
 ---
 
-## table des matières
+## Table des matières
 
 - [présentation](#présentation)
 - [fichiers attendus](#fichiers-attendus)
@@ -19,15 +19,15 @@
 
 ---
 
-## présentation
+## Présentation
 
 ce projet est le deuxième rush de la piscine c à 42  
 le but : coder un solveur pour le puzzle skyscrapers (4x4) en c, avec gestion des contraintes de visibilité  
-objectif principal : respecter la norme, bosser en team, structurer le code et push avant la deadline
+objectif principal : respecter la norme, travailler en team, structurer le code et push avant la deadline
 
 ---
 
-## fichiers attendus
+## Fichiers attendus
 
 - `main.c` : parse les arguments et lance la résolution
 - `solve.c` : backtracking et algo principal
@@ -37,7 +37,7 @@ objectif principal : respecter la norme, bosser en team, structurer le code et p
 
 ---
 
-## project progress
+## Project progress
 
 - [x] main.c
 - [x] solve.c
