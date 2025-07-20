@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   sudocul.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubrouss <jubrouss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lejusdefruits <lejusdefruits@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 00:33:57 by jubrouss          #+#    #+#             */
-/*   Updated: 2025/07/19 17:53:18 by jubrouss         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:41:12 by lejusdefrui      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	*verify_views(int *ligne_plateau, int *nb_tours_ref)
+int	verify_views(int *ligne_plateau, int *nb_tours_ref)
 {
 	int	i;
 	int	count[2];
 	int	val_max;
 	int	val_max_rev;
 
+	count[0] = 0;
+	count[1] = 0;
 	i = 0;
 	val_max = 0;
 	val_max_rev = 0;
 	while (i < 4)
 	{
-		if ((ligne_plateau[i] + '0') > val_max)
+		if (ligne_plateau[i] > val_max)
 		{
-			val_max = ligne_plateau[i] + '0';
+			val_max = ligne_plateau[i];
 			count[0]++;
 		}
-		if ((ligne_plateau[3 - i] + '0') > val_max_rev)
+		if (ligne_plateau[3 - i] > val_max_rev)
 		{
-			val_max_rev = ligne_plateau[3 - i] + '0';
+			val_max_rev = ligne_plateau[3 - i];
 			count[1]++;
 		}
 		i++;
@@ -41,20 +43,31 @@ int	*verify_views(int *ligne_plateau, int *nb_tours_ref)
 	return (0);
 }
 
-int	solved_case(char **plateau, int *pos, char *entry_tab, int test_val)
+
+int solved_case(char **plateau, int *pos, char *entry_tab, int test_val)
 {
-	int	i;
-	int	ligne_plateau[3];
+	int i;
+	int ligne_plateau[4];
+	int colonne_plateau[4];
+	int views[2][2];
 
 	i = 0;
 	while (i < 4)
 	{
-		ligne_plateau[i] = plateau[pos[0]][i] + '0';
-		if (plateau[pos[0]][i] == test_val
-				|| plateau[i][pos[1]] == test_val)
-			return (0);
+		if (plateau[pos[0]][i] == test_val + '0' || plateau[i][pos[1]] == test_val + '0')
+			return 0;
+		ligne_plateau[i] = plateau[pos[0]][i] - '0';
+		colonne_plateau[i] = plateau[i][pos[1]] - '0';
+		views[i > 1][i % 2 == 1] = entry_tab[i * 4 + pos[i < 2]] - '0';
 		i++;
 	}
+	ligne_plateau[pos[1]] = test_val;
+	colonne_plateau[pos[0]] = test_val;
+	if (pos[1] == 3 && !verify_views(ligne_plateau, views[0]))
+		return 0;
+	if (pos[0] == 3 && !verify_views(colonne_plateau, views[1]))
+		return 0;
+	return 1;
 }
 
 void	print_tab(char **plateau)
@@ -62,6 +75,7 @@ void	print_tab(char **plateau)
 	int	i;
 	int	j;
 
+	i = 0;
 	while (i < 4)
 	{
 		j = 0;
@@ -93,12 +107,11 @@ int	placer_case(char **plateau, int *pos, char *entry_tab)
 			}
 			else if (pos[1] == 3)
 			{
-				pos[0]++;
-				pos[1] = 0;
+				placer_case(plateau, (pos[0]+ 1, pos[1] - 3), entry_tab);
 			}
 			else
-				pos[1]++;
-			placer_case(plateau, pos, entry_tab);
+				placer_case(plateau, (pos[0], pos[1] + 1), entry_tab);
+
 		}
 		i++;
 	}
