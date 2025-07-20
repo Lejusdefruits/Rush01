@@ -1,29 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sudocul.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lejusdefruits <lejusdefruits@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/19 00:33:57 by jubrouss          #+#    #+#             */
-/*   Updated: 2025/07/20 15:41:12 by lejusdefrui      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
+#include <stdlib.h>
 
-int	verify_views(int *ligne_plateau, int *nb_tours_ref)
+int verify_views(int *ligne_plateau, int *nb_tours_ref)
 {
-	int	i;
-	int	count[2];
-	int	val_max;
-	int	val_max_rev;
-
-	count[0] = 0;
-	count[1] = 0;
+	int i;
+	int count[2] = {0, 0};
+	int val_max = 0, val_max_rev = 0;
 	i = 0;
-	val_max = 0;
-	val_max_rev = 0;
 	while (i < 4)
 	{
 		if (ligne_plateau[i] > val_max)
@@ -38,11 +21,11 @@ int	verify_views(int *ligne_plateau, int *nb_tours_ref)
 		}
 		i++;
 	}
-	if (count[0] <= nb_tours_ref[0] && count[1] <= nb_tours_ref[1])
-		return (1);
-	return (0);
+	for (i = 0; i < 4; i++)
+		if (ligne_plateau[i] == 0)
+			return (count[0] <= nb_tours_ref[0] && count[1] <= nb_tours_ref[1]);
+	return (count[0] == nb_tours_ref[0] && count[1] == nb_tours_ref[1]);
 }
-
 
 int solved_case(char **plateau, int *pos, char *entry_tab, int test_val)
 {
@@ -63,25 +46,24 @@ int solved_case(char **plateau, int *pos, char *entry_tab, int test_val)
 	}
 	ligne_plateau[pos[1]] = test_val;
 	colonne_plateau[pos[0]] = test_val;
-	if (pos[1] == 3 && !verify_views(ligne_plateau, views[0]))
+	if (verify_views(ligne_plateau, views[0]))
 		return 0;
-	if (pos[0] == 3 && !verify_views(colonne_plateau, views[1]))
+	if (verify_views(colonne_plateau, views[1]))
 		return 0;
 	return 1;
 }
 
-void	print_tab(char **plateau)
+void print_tab(char **plateau)
 {
-	int	i;
-	int	j;
-
-	i = 0;
+	int i = 0, j;
 	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
 			write(1, &plateau[i][j], 1);
+			if (j < 3)
+				write(1, " ", 1);
 			j++;
 		}
 		write(1, "\n", 1);
@@ -89,46 +71,75 @@ void	print_tab(char **plateau)
 	}
 }
 
-int	placer_case(char **plateau, int *pos, char *entry_tab)
+int placer_case(char **plateau, int row, int col, char *entry_tab)
 {
-	int	i;
+	int val;
+	int pos[2];
 
-	i = 1;
-	while (i <= 4)
+	if (row == 4)
 	{
-		if (solved_case(plateau, pos, entry_tab, i))
+		print_tab(plateau);
+		return (1);
+	}
+	print_tab(plateau);
+	pos[0] = row;
+	pos[1] = col;
+	val = 1;
+	while (val <= 4)
+	{
+		if (solved_case(plateau, pos, entry_tab, val))
 		{
-			if (pos[0] == 3 && pos[1] == 3)
+			plateau[row][col] = val + '0';
+			if (col == 3)
 			{
-				plateau[pos[0]][pos[1]] = i + '0';
-				print_tab(plateau);
-				free(plateau);
-				return (0);
-			}
-			else if (pos[1] == 3)
-			{
-				placer_case(plateau, (pos[0]+ 1, pos[1] - 3), entry_tab);
+				if (placer_case(plateau, row + 1, col - 3, entry_tab))
+					return (1);
 			}
 			else
-				placer_case(plateau, (pos[0], pos[1] + 1), entry_tab);
-
+			{
+				if (placer_case(plateau, row, col + 1, entry_tab))
+				return (1);
+			}
+			plateau[row][col] = '0';
 		}
-		i++;
+		val++;
 	}
+	return (0);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	char	*entry_tab;
-	char	**plateau;
-	int		i;
-	int		j;
+	char **plateau;
+	char entry_tab[17];
+	int i, j, idx, k;
 
-	i = 0;
 	if (argc != 2)
 		return (1);
+
+	//retirer les espaces
+	idx = 0;
+	k = 0;
+	while (argv[1][k] && idx < 16)
+	{
+		if (argv[1][k] >= '1' && argv[1][k] <= '4')
+			entry_tab[idx++] = argv[1][k];
+		else if (argv[1][k] != ' ')
+		{
+			write(1, "Error\n", 6);
+			return (1);
+		}
+		k++;
+	}
+	entry_tab[16] = '\0';
+	if (idx != 16)
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
+
+	//initialiser le plateau
+	plateau = malloc(4 * sizeof(char *));
 	i = 0;
-	plateau = (char **)malloc(sizeof(char) * 4);
 	while (i < 4)
 	{
 		plateau[i] = malloc(4 * sizeof(char));
@@ -140,10 +151,16 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+
+	//précondition
+	if (!placer_case(plateau, 0, 0, entry_tab))
+		write(1, "Error\n", 6);
+
+	//libération mémoire
 	i = 0;
-	while (i < argc)
-	{
-		entry_tab[i] = argv[i];
-		i++;
-	}
+	while (i < 4)
+		free(plateau[i++]);
+	free(plateau);
+
+	return (0);
 }
