@@ -36,4 +36,4 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 
 pour compiler le projet  
 ```sh
-cc -wall -wextra -werror main.c solve.c views.c utils.c -o rush01
+cc -Wall -Wextra -Werror main.c solve.c views.c utils.c -o rush01
