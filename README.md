@@ -1,6 +1,6 @@
 ## Présentation
 
-ce projet est le deuxième rush de la piscine c à 42  
+Ce projet est le deuxième rush de la piscine c à 42  
 le but : coder un solveur pour le puzzle skyscrapers (4x4) en c, avec gestion des contraintes de visibilité  
 objectif principal : respecter la norme, travailler en team, structurer le code et push avant la deadline
 
