@@ -12,7 +12,6 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 - `solve.c` : backtracking et algo principal
 - `views.c` : vérifie les contraintes de visibilité sur chaque ligne/colonne
 - `utils.c` : parsing, affichage, gestion d’erreurs, trucs utiles
-- `makefile` : pour compiler simplement le projet
 
 ---
 
@@ -22,7 +21,6 @@ objectif principal : respecter la norme, travailler en team, structurer le code 
 - [x] solve.c
 - [x] views.c
 - [x] utils.c
-- [x] makefile
 
 ---
 
