@@ -1,102 +1,39 @@
-<p align="center">
-  <img src="./ressources/banner.gif" alt="Rush02 Banner" />
-</p>
+## Présentation
 
-## Sujet
-
-programmer `rush-02`, capable de convertir un **nombre entier positif** en **toutes lettres**, en s’appuyant sur un dictionnaire texte
+Ce projet est le deuxième rush de la piscine c à 42  
+le but : coder un solveur pour le puzzle skyscrapers (4x4) en c, avec gestion des contraintes de visibilité  
+objectif principal : respecter la norme, travailler en team, structurer le code et push avant la deadline
 
 ---
 
-## Exemple d’utilisation
+## Fichiers attendus
 
-```bash
-$> ./rush-02 42
-forty two
-
-$> ./rush-02 100000
-one hundred thousand
-
-$> ./rush-02 custom.dict 20
-twenty (ou autre selon le dictionnaire)
-```
+- `main.c` : parse les arguments et lance la résolution
+- `solve.c` : backtracking et algo principal
+- `views.c` : vérifie les contraintes de visibilité sur chaque ligne/colonne
+- `utils.c` : parsing, affichage, gestion d’erreurs, trucs utiles
 
 ---
 
-## Arguments
+## Project progress
 
-Le programme peut prendre :
-
-- 1 argument : le **nombre** à convertir.
-- 2 arguments : un **fichier dictionnaire personnalisé** + le nombre à convertir.
-
----
-
-## Erreurs à gérer
-
-- Nombre non valide (lettres, flottants, négatif, vide...) → `Error\n`
-- Dictionnaire invalide ou incomplet → `Dict Error\n`
+- [x] main.c
+- [x] solve.c
+- [x] views.c
+- [x] utils.c
 
 ---
 
-## Format du dictionnaire
+## contributors
 
-```
-<number>[espaces] : [espaces]<texte>
-```
-
-exemple :
-```
-0 : zero
-100 : one hundred
-42 : forty two
-```
-
-- Les lignes peuvent être dans n'importe quel ordre
-- Il peut y avoir des lignes vides
-- Les espaces autour du `:` ou du texte doivent être ignorés (`trim`)
-- Le fichier doit contenir **au minimum toutes les clés de base nécessaires**
+>[marc chevalier](https://profile-v3.intra.42.fr/users/marcheva) |
+>[julien brousse](https://profile-v3.intra.42.fr/users/jubrouss) |
+>[guillaume fouquier](https://profile-v3.intra.42.fr/users/guifouqu)
 
 ---
 
-## Structure du projet
+## compilation
 
-```
-ex00/
-├── main.c                → le main
-├── parser.c/.h           → lit et parse le dictionnaire
-├── dict_utils.c/.h       → fonctions de recherche dans le dictionnaire
-├── number_to_words.c/.h  → convertit un nombre en lettres
-├── string_utils.c/.h     → fonctions utiles et déjà codées (strlen, strcmp, etc.)
-├── Makefile              → compilation
-└── README.md             → moi
-```
-
----
-
-## Compilation
-
-```bash
-make
-```
-
-Le programme est compilé avec : `cc -Wall -Wextra -Werror`
-
----
-
-## Bonus
-
-- Ajouter les mots de liaison : `and`, `-`, `,`
-- Support d'autres langues avec un dictionnaire traduit
-- Lire depuis l’entrée standard si l’argument est `-` :
-  ```bash
-  ./rush-02 -
-  42
-  forty two
-  ```
-
-## Contributors:
->[Derhen David](https://profile.intra.42.fr/users/dedavid) | 
->[Hoël Keromnes](https://profile.intra.42.fr/users/hkeromne) | 
->[Julien Brousse](https://profile-v3.intra.42.fr/users/jubrouss)
-
+pour compiler le projet  
+```sh
+cc -Wall -Wextra -Werror main.c solve.c views.c utils.c -o rush01
