@@ -5,73 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubrouss <jubrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 21:48:19 by jubrouss          #+#    #+#             */
-/*   Updated: 2025/07/20 22:16:31 by jubrouss         ###   ########.fr       */
+/*   Created: 2025/07/27 06:44:44 by jubrouss          #+#    #+#             */
+/*   Updated: 2025/07/27 18:07:34 by jubrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "./includes/ft.h"
 
-int		parse_entry(char *arg, char *entry_tab);
-char	**init_plateau(void);
-void	free_plateau(char **plateau);
-int		placer_case(char **plateau, int row, int col, char *entry_tab);
-
-void	free_plateau(char **plateau)
+int	ft_dictlen(t_dict *dict)
 {
 	int	i;
 
 	i = 0;
-	while (i < 4)
-	{
-		free(plateau[i]);
+	while (dict[i].nbr && dict[i].str)
 		i++;
-	}
-	free(plateau);
+	return (i);
 }
 
-char	**init_plateau(void)
+void	ft_free_dict(t_dict *dict, int size)
 {
-	char	**tab;
-	int		i;
-	int		j;
+	int i;
 
-	tab = malloc(sizeof(char *) * 4);
-	if (!tab)
-		return (NULL);
 	i = 0;
-	while (i < 4)
+	while (i < size)
 	{
-		tab[i] = malloc(sizeof(char) * 4);
-		j = 0;
-		while (j < 4)
-		{
-			tab[i][j] = '0';
-			j++;
-		}
+		free(dict[i].nbr);
+		free(dict[i].str);
 		i++;
 	}
-	return (tab);
+	free(dict);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	char	**plateau;
-	char	entry_tab[17];
+	t_dict	*dico;
+	int		size;
 
-	if (argc != 2)
-	{
-		write(1, "ERROR :Too many arguments\n", 26);
+	if (ac != 2)
+		return (ft_putstr("entry: ./main <number>\n"), 1);
+	dico = parse_readed_file("numbers.dict");
+	if (!dico)
 		return (1);
-	}
-	if (!parse_entry(argv[1], entry_tab))
-		return (1);
-	plateau = init_plateau();
-	if (!plateau)
-		return (1);
-	if (!placer_case(plateau, 0, 0, entry_tab))
-		write(1, "Error\n", 6);
-	free_plateau(plateau);
+	size = ft_dictlen(dico);
+	convert_number_to_words(av[1], dico, size);
+	ft_free_dict(dico, size);
 	return (0);
 }
